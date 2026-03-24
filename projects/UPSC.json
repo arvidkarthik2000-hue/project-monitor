@@ -1,0 +1,43 @@
+{
+  "name": "UPSC Sentinel",
+  "status": "active",
+  "progress": 65,
+  "phase": "Launch Content Ready",
+  "summary": "257 clean questions (all 5 audit fixes done). 50-day WhatsApp launch content generated (Mar 25 \u00e2\u2020\u2019 May 13). 1,300 PYQs classified (2013-2025).",
+  "db": {
+    "pyq_total": 1300,
+    "pyq_years": "2013-2025",
+    "generated_questions": 257,
+    "questions_v1": 57,
+    "questions_v2": 150,
+    "questions_top10": 50,
+    "distractor_concepts": 3300,
+    "dormant_topics": 716,
+    "topics_tracked": 134,
+    "daily_content_days": 50,
+    "daily_content_questions_used": 138,
+    "answer_distribution": {
+      "a": 72,
+      "b": 71,
+      "c": 58,
+      "d": 56
+    }
+  },
+  "threads": {},
+  "blockers": [
+    "WhatsApp bot not integrated for automated daily delivery",
+    "No user response tracking system yet"
+  ],
+  "next_actions": [
+    "WhatsApp bot integration for daily delivery",
+    "User response tracking + scoring",
+    "Analytics dashboard",
+    "Generate more questions for topics with gaps"
+  ],
+  "decisions": [
+    "Front-load high-prediction topics in Days 1-10",
+    "1 easy + 1 moderate + 1 hard per day",
+    "No topic more than 2 consecutive days",
+    "Prelims date: May 25, 2026"
+  ]
+}

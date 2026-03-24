@@ -1,0 +1,97 @@
+{
+  "name": "CineVerse",
+  "status": "active",
+  "progress": 35,
+  "phase": "Data Collection + Question Generation",
+  "summary": "23,234 movies, 1,123 v3 validated questions, 5 enrichment threads (all dead \u00e2\u20ac\u201d need watchdog)",
+  "db": {
+    "movies_total": 23234,
+    "movies_with_cast": 10847,
+    "movies_with_imdb_id": 14897,
+    "questions_total": 5201,
+    "questions_v3_validated": 1123,
+    "questions_legacy": 1660,
+    "questions_active": 4893,
+    "by_industry": {
+      "hindi": 8480,
+      "tamil": 5026,
+      "malayalam": 4322,
+      "telugu": 3339,
+      "kannada": 2067
+    },
+    "enrichment": {
+      "wiki": 1959,
+      "omdb": 889,
+      "jiosaavn_movies": 1329,
+      "jiosaavn_songs": 9827,
+      "imdb_scraped": 0
+    },
+    "question_formats": {
+      "rapid_fire": 224,
+      "connect": 144,
+      "fill_in_blank": 108,
+      "twisted_plot": 101,
+      "search_parameters": 96,
+      "cinema_lingo": 93,
+      "freeze_frame": 87,
+      "xy_story_puzzle": 78,
+      "picture_math": 74,
+      "minimalistic_poster": 60,
+      "complete_the_list": 54,
+      "emoji_movie": 4,
+      "dialogue_dilemma": 0
+    },
+    "question_pass_rate": 98.6
+  },
+  "threads": {
+    "thread1_wiki": {
+      "status": "dead",
+      "last_count": 1959,
+      "target": 5000
+    },
+    "thread2_omdb": {
+      "status": "dead",
+      "last_count": 889,
+      "target": 4750
+    },
+    "thread3_jiosaavn": {
+      "status": "dead",
+      "last_count": 1329,
+      "target": 2000
+    },
+    "thread4_questions": {
+      "status": "dead",
+      "last_count": 1123,
+      "target": 3000
+    },
+    "thread5_imdb": {
+      "status": "dead",
+      "last_count": 0,
+      "target": 600
+    },
+    "thread6_castcrew": {
+      "status": "not_started",
+      "last_count": 0,
+      "target": 5000
+    }
+  },
+  "blockers": [
+    "All threads died overnight \u00e2\u20ac\u201d no watchdog wrapper",
+    "emoji_movie format paused at 33% pass rate",
+    "dialogue_dilemma waiting on IMDb quote data",
+    "12,387 movies missing cast/crew"
+  ],
+  "next_actions": [
+    "Build and deploy watchdog wrapper",
+    "Relaunch all threads under watchdog",
+    "Add Malayalam + Kannada to question generator",
+    "Build thread6 for cast/crew backfill",
+    "Fix emoji_movie prompt with better examples"
+  ],
+  "decisions": [
+    "v1 generic questions tagged legacy, kept for Easy tier fallback",
+    "v3 validated = production question engine",
+    "PROGA 2025 compliance: CineCoins have zero real-money value",
+    "Gemini via OpenRouter for question generation, not Claude API"
+  ]
+}

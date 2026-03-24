@@ -1,0 +1,33 @@
+{
+  "name": "PhotoBooth AI / PVR Scene Stealer",
+  "status": "active",
+  "progress": 40,
+  "phase": "Build Complete \u00e2\u20ac\u201d Ready for Demo",
+  "summary": "Full ML stack working (InsightFace + GFPGAN + inswapper). Server on localhost:8000. Needs webcam at venue.",
+  "db": {
+    "model": "inswapper_128.onnx (528MB)",
+    "gpu": "RTX 5060 Ti (Blackwell sm_120)",
+    "pytorch": "2.7.1+cu128",
+    "vram_usage": "0.55GB",
+    "init_time": "5.2s",
+    "server_port": 8000
+  },
+  "threads": {},
+  "blockers": [
+    "No webcam connected to dev machine",
+    "Need physical venue setup for live demo",
+    "PVR branding overlay not built"
+  ],
+  "next_actions": [
+    "Webcam integration at venue",
+    "Live demo testing with real faces",
+    "PVR branding overlay",
+    "Production deployment"
+  ],
+  "decisions": [
+    "PyTorch 2.7.1+cu128 for Blackwell sm_120 GPU support",
+    "HuggingFace as model source (GitHub returned 404)",
+    "numpy pinned to <2 for onnxruntime compatibility",
+    "basicsr patched in-place for torchvision compat"
+  ]
+}

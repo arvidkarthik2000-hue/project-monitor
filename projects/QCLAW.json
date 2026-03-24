@@ -1,0 +1,34 @@
+{
+  "name": "QuantClaw / Voltzz Trading",
+  "status": "active",
+  "progress": 60,
+  "phase": "Development \u00e2\u20ac\u201d Agent Deployed",
+  "summary": "Full OpenClaw agent on Opus 4.6. 7 skills, 52 stocks + NIFTY/BANKNIFTY historical data. Backtest + paper trading engines built.",
+  "db": {
+    "stocks_tracked": 52,
+    "indices": [
+      "NIFTY",
+      "BANKNIFTY"
+    ],
+    "skills": 7,
+    "framework_files": 12,
+    "framework_size_kb": 130
+  },
+  "threads": {},
+  "blockers": [
+    "No live broker integration yet (paper trading only)",
+    "OpenAlgo bridge not configured"
+  ],
+  "next_actions": [
+    "Connect OpenAlgo to broker for live signals",
+    "Backtest validation on historical data",
+    "Options strategies implementation",
+    "Real-time scanner deployment"
+  ],
+  "decisions": [
+    "Hybrid architecture: LLMs for analysis, deterministic Python for execution",
+    "Paper trading first, live trading after validation",
+    "Agent runs on Opus 4.6 (same as main Alfred)",
+    "Indian markets focus (NSE/BSE)"
+  ]
+}

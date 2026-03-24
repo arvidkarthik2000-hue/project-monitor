@@ -1,0 +1,33 @@
+{
+  "name": "NEET UG Exam Prep",
+  "status": "active",
+  "progress": 75,
+  "phase": "Production \u00e2\u20ac\u201d Live at neetai.in",
+  "summary": "8,082 verified questions live. All QC phases complete (3B/3C/3D/3E). Deployed to Vercel.",
+  "db": {
+    "questions_total": 8082,
+    "questions_verified": 8082,
+    "critical_issues": 0,
+    "subjects": [
+      "Physics",
+      "Chemistry",
+      "Biology"
+    ],
+    "source": "questions.json (static, Vercel-hosted)"
+  },
+  "threads": {},
+  "blockers": [
+    "OpenRouter credits exhausted for Gemini enrichment",
+    "WhatsApp bot not started"
+  ],
+  "next_actions": [
+    "WhatsApp bot integration",
+    "Gemini enrichment pipeline (needs API credits)",
+    "Additional question scraping from new sources"
+  ],
+  "decisions": [
+    "Production-clean: 0 critical issues across 8,082 questions",
+    "All QC phases complete as of Mar 19",
+    "Deployed to neetai.in via Vercel"
+  ]
+}

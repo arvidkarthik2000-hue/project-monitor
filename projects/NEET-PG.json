@@ -1,0 +1,56 @@
+{
+  "name": "NEET PG Exam Prep",
+  "status": "active",
+  "progress": 45,
+  "phase": "V2 Engine Generation (Gemini)",
+  "summary": "172,417 total Qs, 18,895 v2 generated, 16 subjects, engine running +500-900/hr",
+  "db": {
+    "questions_total": 172417,
+    "questions_v2_gemini": 18895,
+    "pending_validation": 18895,
+    "knowledge_articles": 396,
+    "supabase_host": "db.tgtxfbfuzpkqofxnrtie.supabase.co",
+    "by_subject": {
+      "Medicine": 3329,
+      "Surgery": 2400,
+      "Pharmacology": 2070,
+      "ObsGyn": 1900,
+      "Microbiology": 1639,
+      "Pathology": 1459,
+      "PSM": 890,
+      "ENT": 740,
+      "Pediatrics": 730,
+      "Biochemistry": 700,
+      "Physiology": 650,
+      "Orthopedics": 610,
+      "Ophthalmology": 610,
+      "Anatomy": 550,
+      "Dermatology": 508,
+      "Psychiatry": 110
+    }
+  },
+  "threads": {
+    "engine_v2": {
+      "status": "running",
+      "last_count": 18895,
+      "target": 50000,
+      "rate_per_hr": 600
+    }
+  },
+  "blockers": [
+    "Engine process gets GC'd by OpenClaw session cleanup",
+    "Need persistent process management (Windows service / Task Scheduler)",
+    "V2 validation pipeline not built yet"
+  ],
+  "next_actions": [
+    "V2 validation pipeline",
+    "Persistent process runner for engine",
+    "React Native app integration",
+    "RAG tutor feature"
+  ],
+  "decisions": [
+    "Hourly cron monitor + auto-restart strategy",
+    "16 medical textbooks chunked for RAG (13,204 chunks)",
+    "Expo React Native app with 6 tabs planned"
+  ]
+}
