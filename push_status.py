@@ -593,6 +593,29 @@ def write_and_push(status, commit_msg=None):
         f.write(ts + "\n")
     print(f"  Wrote last_push_timestamp.txt ({ts})")
 
+    # Push to Command Center (keeps Vercel dashboard in sync)
+    print("  Syncing to Command Center...")
+    for code, project in status["projects"].items():
+        payload = json.dumps({
+            "code": code,
+            "log": project.get("summary", ""),
+            "progress": project.get("progress", 0),
+            "sprint_done": [],
+            "new_sprints": project.get("next_actions", []),
+            "new_decisions": project.get("decisions", [])
+        }).encode("utf-8")
+        req = Request(
+            "https://command-center-two-tan.vercel.app/api/agent/push",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST"
+        )
+        try:
+            resp = urlopen(req, timeout=10)
+            print(f"    {code}: {resp.status}")
+        except Exception as e:
+            print(f"    {code}: FAILED ({e})")
+
     if not commit_msg:
         commit_msg = f"status update {datetime.now().strftime('%Y-%m-%d %H:%M')}"
 

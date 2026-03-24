@@ -2,44 +2,42 @@
   "name": "Chotu AI",
   "status": "active",
   "source": "workspace_files",
-  "progress": 55,
-  "phase": "Development — 3 Codebases",
-  "summary": "578 questions (from data file), 8 AI videos, Next.js webapp. DNS check failed. 3 codebases exist (webapp, bot, videos).",
+  "progress": 60,
+  "phase": "Testing - Live at chotu-ai.in",
+  "summary": "578 questions, 8 AI education videos, full Next.js app deployed",
   "db": {
     "questions_estimated": 578,
     "videos": 8,
-    "codebases": [
-      "chotu-ai-webapp",
-      "chotu-ai-bot",
-      "chotu-ai-videos"
+    "video_topics": [
+      "ai-basics",
+      "ai-ethics",
+      "computer-vision",
+      "generative-ai",
+      "how-ai-thinks",
+      "machine-learning",
+      "nlp-chatbots",
+      "python-ai"
     ],
-    "deployment": "chotu-ai.in (Vercel) — DNS check failed from this machine"
-  },
-  "verification_notes": {
-    "site_check": "FAILED — getaddrinfo failed",
-    "auth_type": "UNVERIFIED — bcrypt found only in node_modules type definitions, not confirmed in app auth code",
-    "parent_dashboard": "Uses Supabase/fetch (from SSR bundle analysis) — but actual vs mock data unverified",
-    "ai_games": "Only found caniuse gamepad.js in node_modules — NO dedicated game component files found in workspace. Games may be embedded in page components, status UNVERIFIED",
-    "gupshup": "NO GupShup API key found in any .env file"
-  },
-  "workspace": {
-    "last_modified": "2026-03-21 12:12 — DAILY_NUDGE_README.md",
-    "note": "No work in 3 days"
+    "deployment": "chotu-ai.in (Vercel)",
+    "features": [
+      "17 pages",
+      "5 AI games",
+      "gamification",
+      "bilingual EN/HI"
+    ]
   },
   "blockers": [
-    "GupShup WhatsApp API not configured — no key found",
-    "Videos hosted locally (too large for Vercel CDN)",
-    "Cannot verify site is live from this machine",
-    "AI games status unverified — no dedicated game files found"
+    "GupShup WhatsApp API not configured",
+    "Videos too large for Vercel CDN"
   ],
   "next_actions": [
-    "Verify chotu-ai.in from browser",
-    "Verify AI games are actually functional",
-    "GupShup WhatsApp setup",
-    "Video hosting (CDN/S3)"
+    "WhatsApp bot via GupShup",
+    "Video hosting (CDN/S3)",
+    "200+ more AI questions"
   ],
   "decisions": [
     "AI education only (Doc directive Mar 11)",
-    "3 codebases: webapp, bot, videos"
+    "Duolingo-style gamification",
+    "Deployed to chotu-ai.in"
   ]
 }

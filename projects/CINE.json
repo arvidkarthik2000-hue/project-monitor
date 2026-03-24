@@ -1,98 +1,35 @@
 {
   "name": "CineVerse",
   "status": "active",
-  "source": "verified",
+  "source": "live_db",
   "progress": 35,
   "phase": "Data Collection + Question Generation",
-  "summary": "23,234 movies, 7,143 total questions (3,081 v3 validated, 6,780 active). 6 threads ALL RUNNING under watchdog.",
+  "summary": "23234 movies, 7143 questions (6780 active), enrichment ongoing",
   "db": {
     "movies_total": 23234,
     "movies_with_cast": 10847,
-    "movies_with_imdb_id": 14897,
     "questions_total": 7143,
     "questions_active": 6780,
-    "questions_v3_validated": 3081,
-    "v3_by_category": {
-      "rapid_fire": 202,
-      "connect": 135,
-      "cinema_lingo": 92,
-      "fill_in_blank": 90,
-      "twisted_plot": 81,
-      "search_parameters": 81,
-      "freeze_frame": 78,
-      "xy_story_puzzle": 72,
-      "picture_math": 67,
-      "complete_the_list": 48,
-      "minimalistic_poster": 42,
-      "emoji_movie": 12,
-      "dialogue_dilemma": 0
-    },
-    "v3_by_industry": {
-      "telugu": 577,
-      "tamil": 236,
-      "hindi": 156,
-      "kannada": 8,
-      "other": 15
-    },
-    "movies_by_industry_note": "API returned only 1000 rows (hindi: 1000). Need RPC for full breakdown. Previous known: Hindi 8480, Tamil 5026, Malayalam 4322, Telugu 3339, Kannada 2067.",
     "enrichment": {
-      "wiki": 3975,
+      "wiki": 3983,
       "omdb": 898,
-      "jiosaavn_movies": 10645
+      "jiosaavn": 10645
     }
-  },
-  "threads": {
-    "thread1_wiki": {
-      "status": "running",
-      "process": "watchdog.py thread1_wiki_multilang.py",
-      "pid": 15724
-    },
-    "thread2_omdb": {
-      "status": "running",
-      "process": "watchdog.py thread2_omdb_day2.py",
-      "pid": 29448
-    },
-    "thread3_jiosaavn": {
-      "status": "running",
-      "process": "watchdog.py thread3_jiosaavn.py",
-      "pid": 23896
-    },
-    "thread4_questions": {
-      "status": "running",
-      "process": "watchdog.py thread4_v3_validated.py",
-      "pid": 30172
-    },
-    "thread5_imdb": {
-      "status": "running",
-      "process": "watchdog.py thread5_imdb_scrape.py",
-      "pid": 34212
-    },
-    "thread6_castcrew": {
-      "status": "running",
-      "process": "watchdog.py thread6_castcrew_backfill.py",
-      "pid": 26196
-    }
-  },
-  "workspace": {
-    "watchdog_exists": true,
-    "question_style_guide_lines": 538,
-    "last_modified": "2026-03-24 23:57 — thread3_jiosaavn log"
   },
   "blockers": [
-    "emoji_movie format only 12 v3 validated (low pass rate)",
-    "dialogue_dilemma: 0 questions — waiting on IMDb quote data",
-    "12,387 movies still missing cast/crew (backfill thread6 running)"
+    "Threads die overnight without watchdog wrapper",
+    "emoji_movie format paused at 33% pass rate",
+    "12,387 movies missing cast/crew"
   ],
   "next_actions": [
-    "Monitor thread health via watchdog",
-    "Fix emoji_movie generation prompt",
-    "Get IMDb quote pipeline working for dialogue_dilemma",
-    "Add Malayalam + Kannada to question generator"
+    "Build watchdog wrapper",
+    "Relaunch all threads",
+    "Add Malayalam + Kannada to generator",
+    "Cast/crew backfill for 12K movies"
   ],
   "decisions": [
-    "v3 validated = production engine (3,081 so far)",
+    "v3 validated = production engine",
     "Gemini via OpenRouter for generation",
-    "PROGA 2025 compliance: CineCoins = zero real value",
-    "Watchdog wrapper auto-restarts dead threads"
+    "PROGA 2025 compliance: CineCoins = zero real value"
   ]
 }

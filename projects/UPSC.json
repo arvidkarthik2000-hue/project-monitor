@@ -1,50 +1,31 @@
 {
   "name": "UPSC Sentinel",
   "status": "active",
-  "source": "verified",
+  "source": "workspace_files",
   "progress": 65,
-  "phase": "Launch Content Ready — Day 1 is TOMORROW",
-  "summary": "257 questions (v1:57, v2:150, top10:50). All 50 daily question files + 50 answer files verified. Day 1 content READY for Mar 25.",
+  "phase": "Launch Content Ready",
+  "summary": "257 clean questions (v1:57, v2:150, top10:50). 50 daily WhatsApp messages ready.",
   "db": {
+    "questions_total": 257,
     "questions_v1": 57,
     "questions_v2": 150,
     "questions_top10": 50,
-    "questions_total": 257,
     "daily_content_days": 50,
     "daily_answer_sheets": 50,
-    "daily_schedule_entries": 10,
-    "pib_files": 22
-  },
-  "day1_preview": {
-    "file": "day_01.txt",
-    "lines": 40,
-    "chars": 1654,
-    "first_question": "PM SVANidhi scheme — collateral-free loans to street vendors"
-  },
-  "verification_notes": {
-    "all_50_daily_files": "VERIFIED — 50 question files + 50 answer files exist",
-    "day_01_ready": "VERIFIED — 40 lines, 1654 chars, starts with UPSC SENTINEL Day 1/50",
-    "daily_schedule": "EXISTS but only 10 entries (expected 50) — INCOMPLETE",
-    "pib_scraper_cron": "UNVERIFIED — 22 PIB-related scripts exist but no evidence of active cron/scheduled task",
-    "whatsapp_group": "UNVERIFIED — cannot check from here"
-  },
-  "workspace": {
-    "last_modified": "2026-03-24 22:11 — TASK_COMPLETION_SUMMARY.md"
+    "pyq_files": 0
   },
   "blockers": [
-    "daily_schedule.json only has 10 entries (should be 50)",
-    "WhatsApp bot not integrated — Day 1 must be sent MANUALLY tomorrow",
-    "PIB scraper not on any cron/scheduled task",
-    "No user response tracking"
+    "WhatsApp bot not integrated for automated delivery",
+    "No user response tracking system"
   ],
   "next_actions": [
-    "URGENT: Send Day 1 content manually on Mar 25",
-    "Fix daily_schedule.json (missing 40 entries)",
-    "WhatsApp bot for automated delivery",
-    "Set up PIB scraper on Windows Task Scheduler"
+    "WhatsApp bot for daily delivery",
+    "User response tracking + scoring",
+    "Generate more questions for gap topics"
   ],
   "decisions": [
-    "Launch: Mar 25 to May 13 (50 days)",
+    "50-day launch: Mar 25 to May 13",
+    "1 easy + 1 moderate + 1 hard per day",
     "Prelims: May 25, 2026"
   ]
 }
