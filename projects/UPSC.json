@@ -1,43 +1,31 @@
 {
   "name": "UPSC Sentinel",
   "status": "active",
+  "source": "workspace_files",
   "progress": 65,
   "phase": "Launch Content Ready",
-  "summary": "257 clean questions (all 5 audit fixes done). 50-day WhatsApp launch content generated (Mar 25 \u00e2\u2020\u2019 May 13). 1,300 PYQs classified (2013-2025).",
+  "summary": "257 clean questions (v1:57, v2:150, top10:50). 50 daily WhatsApp messages ready.",
   "db": {
-    "pyq_total": 1300,
-    "pyq_years": "2013-2025",
-    "generated_questions": 257,
+    "questions_total": 257,
     "questions_v1": 57,
     "questions_v2": 150,
     "questions_top10": 50,
-    "distractor_concepts": 3300,
-    "dormant_topics": 716,
-    "topics_tracked": 134,
     "daily_content_days": 50,
-    "daily_content_questions_used": 138,
-    "answer_distribution": {
-      "a": 72,
-      "b": 71,
-      "c": 58,
-      "d": 56
-    }
+    "daily_answer_sheets": 50,
+    "pyq_files": 0
   },
-  "threads": {},
   "blockers": [
-    "WhatsApp bot not integrated for automated daily delivery",
-    "No user response tracking system yet"
+    "WhatsApp bot not integrated for automated delivery",
+    "No user response tracking system"
   ],
   "next_actions": [
-    "WhatsApp bot integration for daily delivery",
+    "WhatsApp bot for daily delivery",
     "User response tracking + scoring",
-    "Analytics dashboard",
-    "Generate more questions for topics with gaps"
+    "Generate more questions for gap topics"
   ],
   "decisions": [
-    "Front-load high-prediction topics in Days 1-10",
+    "50-day launch: Mar 25 to May 13",
     "1 easy + 1 moderate + 1 hard per day",
-    "No topic more than 2 consecutive days",
-    "Prelims date: May 25, 2026"
+    "Prelims: May 25, 2026"
   ]
 }

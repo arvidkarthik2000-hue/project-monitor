@@ -1,33 +1,33 @@
 {
   "name": "PhotoBooth AI / PVR Scene Stealer",
   "status": "active",
+  "source": "workspace_files",
   "progress": 40,
-  "phase": "Build Complete \u00e2\u20ac\u201d Ready for Demo",
-  "summary": "Full ML stack working (InsightFace + GFPGAN + inswapper). Server on localhost:8000. Needs webcam at venue.",
+  "phase": "Build Complete - Ready for Demo",
+  "summary": "ML stack working, model=loaded, server=ready",
   "db": {
-    "model": "inswapper_128.onnx (528MB)",
+    "model_file": "inswapper_128.onnx",
+    "server_file": "core/server.py",
     "gpu": "RTX 5060 Ti (Blackwell sm_120)",
     "pytorch": "2.7.1+cu128",
-    "vram_usage": "0.55GB",
+    "vram": "0.55GB",
     "init_time": "5.2s",
-    "server_port": 8000
+    "port": 8000,
+    "build_status_excerpt": "# PVR Scene Stealer — Build Status\n\n**Status:** ✅ READY FOR DEMO  \n**Time:** Fixed 2026-03-24 12:40 "
   },
-  "threads": {},
   "blockers": [
-    "No webcam connected to dev machine",
-    "Need physical venue setup for live demo",
+    "No webcam on dev machine",
+    "Need venue for live demo",
     "PVR branding overlay not built"
   ],
   "next_actions": [
-    "Webcam integration at venue",
-    "Live demo testing with real faces",
-    "PVR branding overlay",
-    "Production deployment"
+    "Webcam at venue",
+    "Live demo test",
+    "PVR branding overlay"
   ],
   "decisions": [
-    "PyTorch 2.7.1+cu128 for Blackwell sm_120 GPU support",
-    "HuggingFace as model source (GitHub returned 404)",
-    "numpy pinned to <2 for onnxruntime compatibility",
-    "basicsr patched in-place for torchvision compat"
+    "PyTorch 2.7.1+cu128 for Blackwell",
+    "HuggingFace for model (GitHub 404)",
+    "numpy<2 for onnxruntime compat"
   ]
 }

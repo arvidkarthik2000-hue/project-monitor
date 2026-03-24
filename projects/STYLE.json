@@ -1,29 +1,28 @@
 {
   "name": "StyleGenie",
   "status": "active",
+  "source": "workspace_files",
   "progress": 50,
-  "phase": "Development \u00e2\u20ac\u201d Bot + Engine Built",
-  "summary": "WhatsApp bot built (Node.js + Claude Vision). Style DNA quiz, Python Flask engine, 50 products/5 brands. Landing page live at stylegenie.in.",
+  "phase": "Development - Bot + Engine Built",
+  "summary": "WhatsApp bot + Flask engine built, 1680 files, landing page live at stylegenie.in",
   "db": {
+    "total_files": 1680,
     "products": 50,
     "brands": 5,
     "style_profiles": 5,
-    "quiz_questions": 10
+    "deployment": "stylegenie.in"
   },
-  "threads": {},
   "blockers": [
     "GupShup WhatsApp API not configured",
     "Aishwarya's product catalog pending"
   ],
   "next_actions": [
-    "GupShup WhatsApp setup",
-    "Product catalog expansion from Aishwarya",
-    "Instagram OAuth integration",
-    "Style DNA quiz refinement"
+    "GupShup setup",
+    "Product catalog from Aishwarya",
+    "Instagram OAuth"
   ],
   "decisions": [
     "Claude Vision for outfit analysis",
-    "Same tech stack as Chotu AI (WhatsApp + Claude + Supabase + Razorpay)",
-    "5 style profiles: Classic, Trendy, Minimalist, Bohemian, Streetwear"
+    "5 style profiles"
   ]
 }

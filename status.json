@@ -1,335 +1,255 @@
 {
-  "last_updated": "2026-03-24T17:45:00Z",
-  "updated_by": "alfred",
+  "last_updated": "2026-03-24T17:53:42.514843+00:00",
+  "updated_by": "alfred_push_status",
   "projects": {
     "CINE": {
       "name": "CineVerse",
-      "status": "active",
-      "progress": 35,
-      "phase": "Data Collection + Question Generation",
-      "summary": "23,234 movies, 1,123 v3 validated questions, 5 enrichment threads (all dead — need watchdog)",
-      "db": {
-        "movies_total": 23234,
-        "movies_with_cast": 10847,
-        "movies_with_imdb_id": 14897,
-        "questions_total": 5201,
-        "questions_v3_validated": 1123,
-        "questions_legacy": 1660,
-        "questions_active": 4893,
-        "by_industry": {
-          "hindi": 8480,
-          "tamil": 5026,
-          "malayalam": 4322,
-          "telugu": 3339,
-          "kannada": 2067
-        },
-        "enrichment": {
-          "wiki": 1959,
-          "omdb": 889,
-          "jiosaavn_movies": 1329,
-          "jiosaavn_songs": 9827,
-          "imdb_scraped": 0
-        },
-        "question_formats": {
-          "rapid_fire": 224,
-          "connect": 144,
-          "fill_in_blank": 108,
-          "twisted_plot": 101,
-          "search_parameters": 96,
-          "cinema_lingo": 93,
-          "freeze_frame": 87,
-          "xy_story_puzzle": 78,
-          "picture_math": 74,
-          "minimalistic_poster": 60,
-          "complete_the_list": 54,
-          "emoji_movie": 4,
-          "dialogue_dilemma": 0
-        },
-        "question_pass_rate": 98.6
-      },
-      "threads": {
-        "thread1_wiki": {"status": "dead", "last_count": 1959, "target": 5000},
-        "thread2_omdb": {"status": "dead", "last_count": 889, "target": 4750},
-        "thread3_jiosaavn": {"status": "dead", "last_count": 1329, "target": 2000},
-        "thread4_questions": {"status": "dead", "last_count": 1123, "target": 3000},
-        "thread5_imdb": {"status": "dead", "last_count": 0, "target": 600},
-        "thread6_castcrew": {"status": "not_started", "last_count": 0, "target": 5000}
-      },
+      "status": "unknown",
+      "source": "error",
+      "summary": "Awaiting live data - CINE_SUPABASE_KEY not set in .env",
+      "db": {},
       "blockers": [
-        "All threads died overnight — no watchdog wrapper",
-        "emoji_movie format paused at 33% pass rate",
-        "dialogue_dilemma waiting on IMDb quote data",
-        "12,387 movies missing cast/crew"
+        "CINE_SUPABASE_KEY not set in .env"
       ],
       "next_actions": [
-        "Build and deploy watchdog wrapper",
-        "Relaunch all threads under watchdog",
-        "Add Malayalam + Kannada to question generator",
-        "Build thread6 for cast/crew backfill",
-        "Fix emoji_movie prompt with better examples"
+        "Fix data source"
       ],
-      "decisions": [
-        "v1 generic questions tagged legacy, kept for Easy tier fallback",
-        "v3 validated = production question engine",
-        "PROGA 2025 compliance: CineCoins have zero real-money value",
-        "Gemini via OpenRouter for question generation, not Claude API"
-      ]
+      "decisions": []
     },
     "NEET-UG": {
       "name": "NEET UG Exam Prep",
       "status": "active",
+      "source": "workspace_files",
       "progress": 75,
-      "phase": "Production — Live at neetai.in",
-      "summary": "8,082 verified questions live. All QC phases complete (3B/3C/3D/3E). Deployed to Vercel.",
+      "phase": "Production - Live at neetai.in",
+      "summary": "8082 verified questions live at neetai.in, all QC phases complete",
       "db": {
         "questions_total": 8082,
         "questions_verified": 8082,
         "critical_issues": 0,
-        "subjects": ["Physics", "Chemistry", "Biology"],
-        "source": "questions.json (static, Vercel-hosted)"
+        "subjects": {
+          "Botany": 2122,
+          "Zoology": 1360,
+          "Physics": 2229,
+          "Chemistry": 2371
+        },
+        "enhanced_questions": 11427,
+        "deployment": "neetai.in (Vercel)",
+        "data_source": "questions.json (static)"
       },
-      "threads": {},
       "blockers": [
-        "OpenRouter credits exhausted for Gemini enrichment",
+        "OpenRouter credits exhausted for enrichment",
         "WhatsApp bot not started"
       ],
       "next_actions": [
         "WhatsApp bot integration",
-        "Gemini enrichment pipeline (needs API credits)",
-        "Additional question scraping from new sources"
+        "Gemini enrichment pipeline",
+        "Expand question bank beyond 8K"
       ],
       "decisions": [
-        "Production-clean: 0 critical issues across 8,082 questions",
-        "All QC phases complete as of Mar 19",
+        "All QC phases complete (3B/3C/3D/3E) as of Mar 19",
         "Deployed to neetai.in via Vercel"
       ]
     },
     "NEET-PG": {
       "name": "NEET PG Exam Prep",
       "status": "active",
+      "source": "workspace_files",
       "progress": 45,
       "phase": "V2 Engine Generation (Gemini)",
-      "summary": "172,417 total Qs, 18,895 v2 generated, 16 subjects, engine running +500-900/hr",
+      "summary": "Stats from engine_v2_stats.json, 95 scraped JSON files",
       "db": {
-        "questions_total": 172417,
-        "questions_v2_gemini": 18895,
-        "pending_validation": 18895,
-        "knowledge_articles": 396,
-        "supabase_host": "db.tgtxfbfuzpkqofxnrtie.supabase.co",
-        "by_subject": {
-          "Medicine": 3329,
-          "Surgery": 2400,
-          "Pharmacology": 2070,
-          "ObsGyn": 1900,
-          "Microbiology": 1639,
-          "Pathology": 1459,
-          "PSM": 890,
-          "ENT": 740,
-          "Pediatrics": 730,
-          "Biochemistry": 700,
-          "Physiology": 650,
-          "Orthopedics": 610,
-          "Ophthalmology": 610,
-          "Anatomy": 550,
-          "Dermatology": 508,
-          "Psychiatry": 110
+        "scraped_files": 95,
+        "engine_stats": {
+          "start": "2026-03-24T16:04:17.101Z",
+          "engine": "v2-hybrid",
+          "generation_model": "gemini-2.5-pro",
+          "validation": "deferred-to-openclaw",
+          "paid_tier": false,
+          "generated": 200,
+          "inserted": 200,
+          "articles": 16,
+          "errors": [],
+          "skipped_embed": 0
         }
       },
-      "threads": {
-        "engine_v2": {"status": "running", "last_count": 18895, "target": 50000, "rate_per_hr": 600}
-      },
       "blockers": [
-        "Engine process gets GC'd by OpenClaw session cleanup",
-        "Need persistent process management (Windows service / Task Scheduler)",
-        "V2 validation pipeline not built yet"
+        "Engine dies between hourly checks",
+        "NEETPG_SUPABASE_KEY not in .env — using workspace files"
       ],
       "next_actions": [
+        "Add NEETPG_SUPABASE_KEY to .env for live queries",
         "V2 validation pipeline",
-        "Persistent process runner for engine",
-        "React Native app integration",
-        "RAG tutor feature"
+        "Persistent runner"
       ],
-      "decisions": [
-        "Hourly cron monitor + auto-restart strategy",
-        "16 medical textbooks chunked for RAG (13,204 chunks)",
-        "Expo React Native app with 6 tabs planned"
-      ]
+      "decisions": []
     },
     "CHOTU": {
       "name": "Chotu AI",
       "status": "active",
+      "source": "workspace_files",
       "progress": 60,
-      "phase": "Testing — Live at chotu-ai.in",
-      "summary": "Full Next.js 15 web app + WhatsApp bot. 577 questions, 8 AI education videos, gamification system.",
+      "phase": "Testing - Live at chotu-ai.in",
+      "summary": "578 questions, 8 AI education videos, full Next.js app deployed",
       "db": {
-        "questions_total": 577,
-        "modules": 8,
+        "questions_estimated": 578,
         "videos": 8,
-        "video_topics": ["ai-basics", "how-ai-thinks", "machine-learning", "computer-vision", "nlp-chatbots", "generative-ai", "ai-ethics", "python-ai"],
-        "features": ["17 pages", "5 AI games", "XP/streaks/quests/leaderboard/shop", "Supabase auth with parent OTP", "Bilingual EN/HI"]
+        "video_topics": [
+          "ai-basics",
+          "ai-ethics",
+          "computer-vision",
+          "generative-ai",
+          "how-ai-thinks",
+          "machine-learning",
+          "nlp-chatbots",
+          "python-ai"
+        ],
+        "deployment": "chotu-ai.in (Vercel)",
+        "features": [
+          "17 pages",
+          "5 AI games",
+          "gamification",
+          "bilingual EN/HI"
+        ]
       },
-      "threads": {},
       "blockers": [
         "GupShup WhatsApp API not configured",
-        "Videos hosted locally (too large for Vercel CDN)"
+        "Videos too large for Vercel CDN"
       ],
       "next_actions": [
-        "WhatsApp bot integration via GupShup",
-        "Video hosting solution (CDN or S3)",
-        "200+ additional AI questions",
-        "Gamification polish"
+        "WhatsApp bot via GupShup",
+        "Video hosting (CDN/S3)",
+        "200+ more AI questions"
       ],
       "decisions": [
-        "Pivoted to AI education only (Doc directive Mar 11)",
-        "Duolingo-style gamification system",
-        "8 MP4 videos generated via AI pipeline",
-        "Deployed to chotu-ai.in via Vercel"
+        "AI education only (Doc directive Mar 11)",
+        "Duolingo-style gamification",
+        "Deployed to chotu-ai.in"
       ]
     },
     "QCLAW": {
       "name": "QuantClaw / Voltzz Trading",
       "status": "active",
+      "source": "workspace_files",
       "progress": 60,
-      "phase": "Development — Agent Deployed",
-      "summary": "Full OpenClaw agent on Opus 4.6. 7 skills, 52 stocks + NIFTY/BANKNIFTY historical data. Backtest + paper trading engines built.",
+      "phase": "Development - Agent Deployed",
+      "summary": "OpenClaw agent on Opus 4.6, 13 Python files, 7 skills, paper trading active",
       "db": {
+        "python_files": 13,
         "stocks_tracked": 52,
-        "indices": ["NIFTY", "BANKNIFTY"],
-        "skills": 7,
-        "framework_files": 12,
-        "framework_size_kb": 130
+        "indices": [
+          "NIFTY",
+          "BANKNIFTY"
+        ],
+        "skills": 7
       },
-      "threads": {},
       "blockers": [
-        "No live broker integration yet (paper trading only)",
+        "No live broker integration (paper only)",
         "OpenAlgo bridge not configured"
       ],
       "next_actions": [
-        "Connect OpenAlgo to broker for live signals",
-        "Backtest validation on historical data",
-        "Options strategies implementation",
-        "Real-time scanner deployment"
+        "Connect OpenAlgo to broker",
+        "Backtest validation",
+        "Options strategies"
       ],
       "decisions": [
-        "Hybrid architecture: LLMs for analysis, deterministic Python for execution",
-        "Paper trading first, live trading after validation",
-        "Agent runs on Opus 4.6 (same as main Alfred)",
-        "Indian markets focus (NSE/BSE)"
+        "Hybrid: LLMs for analysis, Python for execution",
+        "Paper trading first",
+        "Indian markets (NSE/BSE)"
       ]
     },
     "STYLE": {
       "name": "StyleGenie",
       "status": "active",
+      "source": "workspace_files",
       "progress": 50,
-      "phase": "Development — Bot + Engine Built",
-      "summary": "WhatsApp bot built (Node.js + Claude Vision). Style DNA quiz, Python Flask engine, 50 products/5 brands. Landing page live at stylegenie.in.",
+      "phase": "Development - Bot + Engine Built",
+      "summary": "WhatsApp bot + Flask engine built, 1680 files, landing page live at stylegenie.in",
       "db": {
+        "total_files": 1680,
         "products": 50,
         "brands": 5,
         "style_profiles": 5,
-        "quiz_questions": 10
+        "deployment": "stylegenie.in"
       },
-      "threads": {},
       "blockers": [
         "GupShup WhatsApp API not configured",
         "Aishwarya's product catalog pending"
       ],
       "next_actions": [
-        "GupShup WhatsApp setup",
-        "Product catalog expansion from Aishwarya",
-        "Instagram OAuth integration",
-        "Style DNA quiz refinement"
+        "GupShup setup",
+        "Product catalog from Aishwarya",
+        "Instagram OAuth"
       ],
       "decisions": [
         "Claude Vision for outfit analysis",
-        "Same tech stack as Chotu AI (WhatsApp + Claude + Supabase + Razorpay)",
-        "5 style profiles: Classic, Trendy, Minimalist, Bohemian, Streetwear"
+        "5 style profiles"
       ]
     },
     "UPSC": {
       "name": "UPSC Sentinel",
       "status": "active",
+      "source": "workspace_files",
       "progress": 65,
       "phase": "Launch Content Ready",
-      "summary": "257 clean questions (all 5 audit fixes done). 50-day WhatsApp launch content generated (Mar 25 → May 13). 1,300 PYQs classified (2013-2025).",
+      "summary": "257 clean questions (v1:57, v2:150, top10:50). 50 daily WhatsApp messages ready.",
       "db": {
-        "pyq_total": 1300,
-        "pyq_years": "2013-2025",
-        "generated_questions": 257,
+        "questions_total": 257,
         "questions_v1": 57,
         "questions_v2": 150,
         "questions_top10": 50,
-        "distractor_concepts": 3300,
-        "dormant_topics": 716,
-        "topics_tracked": 134,
         "daily_content_days": 50,
-        "daily_content_questions_used": 138,
-        "answer_distribution": {"a": 72, "b": 71, "c": 58, "d": 56}
+        "daily_answer_sheets": 50,
+        "pyq_files": 0
       },
-      "threads": {},
       "blockers": [
-        "WhatsApp bot not integrated for automated daily delivery",
-        "No user response tracking system yet"
+        "WhatsApp bot not integrated for automated delivery",
+        "No user response tracking system"
       ],
       "next_actions": [
-        "WhatsApp bot integration for daily delivery",
+        "WhatsApp bot for daily delivery",
         "User response tracking + scoring",
-        "Analytics dashboard",
-        "Generate more questions for topics with gaps"
+        "Generate more questions for gap topics"
       ],
       "decisions": [
-        "Front-load high-prediction topics in Days 1-10",
+        "50-day launch: Mar 25 to May 13",
         "1 easy + 1 moderate + 1 hard per day",
-        "No topic more than 2 consecutive days",
-        "Prelims date: May 25, 2026"
+        "Prelims: May 25, 2026"
       ]
     },
     "PHOTO": {
       "name": "PhotoBooth AI / PVR Scene Stealer",
       "status": "active",
+      "source": "workspace_files",
       "progress": 40,
-      "phase": "Build Complete — Ready for Demo",
-      "summary": "Full ML stack working (InsightFace + GFPGAN + inswapper). Server on localhost:8000. Needs webcam at venue.",
+      "phase": "Build Complete - Ready for Demo",
+      "summary": "ML stack working, model=loaded, server=ready",
       "db": {
-        "model": "inswapper_128.onnx (528MB)",
+        "model_file": "inswapper_128.onnx",
+        "server_file": "core/server.py",
         "gpu": "RTX 5060 Ti (Blackwell sm_120)",
         "pytorch": "2.7.1+cu128",
-        "vram_usage": "0.55GB",
+        "vram": "0.55GB",
         "init_time": "5.2s",
-        "server_port": 8000
+        "port": 8000,
+        "build_status_excerpt": "# PVR Scene Stealer — Build Status\n\n**Status:** ✅ READY FOR DEMO  \n**Time:** Fixed 2026-03-24 12:40 "
       },
-      "threads": {},
       "blockers": [
-        "No webcam connected to dev machine",
-        "Need physical venue setup for live demo",
+        "No webcam on dev machine",
+        "Need venue for live demo",
         "PVR branding overlay not built"
       ],
       "next_actions": [
-        "Webcam integration at venue",
-        "Live demo testing with real faces",
-        "PVR branding overlay",
-        "Production deployment"
+        "Webcam at venue",
+        "Live demo test",
+        "PVR branding overlay"
       ],
       "decisions": [
-        "PyTorch 2.7.1+cu128 for Blackwell sm_120 GPU support",
-        "HuggingFace as model source (GitHub returned 404)",
-        "numpy pinned to <2 for onnxruntime compatibility",
-        "basicsr patched in-place for torchvision compat"
+        "PyTorch 2.7.1+cu128 for Blackwell",
+        "HuggingFace for model (GitHub 404)",
+        "numpy<2 for onnxruntime compat"
       ]
     }
   },
-  "alerts": [
-    {
-      "project": "CINE",
-      "severity": "high",
-      "message": "All 5 CineVerse threads dead since last night — need watchdog wrapper",
-      "timestamp": "2026-03-24T08:00:00Z"
-    },
-    {
-      "project": "NEET-PG",
-      "severity": "medium",
-      "message": "Engine process dies between hourly checks — needs persistent runner",
-      "timestamp": "2026-03-24T17:00:00Z"
-    }
-  ]
+  "alerts": []
 }

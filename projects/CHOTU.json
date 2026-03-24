@@ -1,46 +1,43 @@
 {
   "name": "Chotu AI",
   "status": "active",
+  "source": "workspace_files",
   "progress": 60,
-  "phase": "Testing \u00e2\u20ac\u201d Live at chotu-ai.in",
-  "summary": "Full Next.js 15 web app + WhatsApp bot. 577 questions, 8 AI education videos, gamification system.",
+  "phase": "Testing - Live at chotu-ai.in",
+  "summary": "578 questions, 8 AI education videos, full Next.js app deployed",
   "db": {
-    "questions_total": 577,
-    "modules": 8,
+    "questions_estimated": 578,
     "videos": 8,
     "video_topics": [
       "ai-basics",
+      "ai-ethics",
+      "computer-vision",
+      "generative-ai",
       "how-ai-thinks",
       "machine-learning",
-      "computer-vision",
       "nlp-chatbots",
-      "generative-ai",
-      "ai-ethics",
       "python-ai"
     ],
+    "deployment": "chotu-ai.in (Vercel)",
     "features": [
       "17 pages",
       "5 AI games",
-      "XP/streaks/quests/leaderboard/shop",
-      "Supabase auth with parent OTP",
-      "Bilingual EN/HI"
+      "gamification",
+      "bilingual EN/HI"
     ]
   },
-  "threads": {},
   "blockers": [
     "GupShup WhatsApp API not configured",
-    "Videos hosted locally (too large for Vercel CDN)"
+    "Videos too large for Vercel CDN"
   ],
   "next_actions": [
-    "WhatsApp bot integration via GupShup",
-    "Video hosting solution (CDN or S3)",
-    "200+ additional AI questions",
-    "Gamification polish"
+    "WhatsApp bot via GupShup",
+    "Video hosting (CDN/S3)",
+    "200+ more AI questions"
   ],
   "decisions": [
-    "Pivoted to AI education only (Doc directive Mar 11)",
-    "Duolingo-style gamification system",
-    "8 MP4 videos generated via AI pipeline",
-    "Deployed to chotu-ai.in via Vercel"
+    "AI education only (Doc directive Mar 11)",
+    "Duolingo-style gamification",
+    "Deployed to chotu-ai.in"
   ]
 }

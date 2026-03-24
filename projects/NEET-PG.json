@@ -1,56 +1,33 @@
 {
   "name": "NEET PG Exam Prep",
   "status": "active",
+  "source": "workspace_files",
   "progress": 45,
   "phase": "V2 Engine Generation (Gemini)",
-  "summary": "172,417 total Qs, 18,895 v2 generated, 16 subjects, engine running +500-900/hr",
+  "summary": "Stats from engine_v2_stats.json, 95 scraped JSON files",
   "db": {
-    "questions_total": 172417,
-    "questions_v2_gemini": 18895,
-    "pending_validation": 18895,
-    "knowledge_articles": 396,
-    "supabase_host": "db.tgtxfbfuzpkqofxnrtie.supabase.co",
-    "by_subject": {
-      "Medicine": 3329,
-      "Surgery": 2400,
-      "Pharmacology": 2070,
-      "ObsGyn": 1900,
-      "Microbiology": 1639,
-      "Pathology": 1459,
-      "PSM": 890,
-      "ENT": 740,
-      "Pediatrics": 730,
-      "Biochemistry": 700,
-      "Physiology": 650,
-      "Orthopedics": 610,
-      "Ophthalmology": 610,
-      "Anatomy": 550,
-      "Dermatology": 508,
-      "Psychiatry": 110
-    }
-  },
-  "threads": {
-    "engine_v2": {
-      "status": "running",
-      "last_count": 18895,
-      "target": 50000,
-      "rate_per_hr": 600
+    "scraped_files": 95,
+    "engine_stats": {
+      "start": "2026-03-24T16:04:17.101Z",
+      "engine": "v2-hybrid",
+      "generation_model": "gemini-2.5-pro",
+      "validation": "deferred-to-openclaw",
+      "paid_tier": false,
+      "generated": 200,
+      "inserted": 200,
+      "articles": 16,
+      "errors": [],
+      "skipped_embed": 0
     }
   },
   "blockers": [
-    "Engine process gets GC'd by OpenClaw session cleanup",
-    "Need persistent process management (Windows service / Task Scheduler)",
-    "V2 validation pipeline not built yet"
+    "Engine dies between hourly checks",
+    "NEETPG_SUPABASE_KEY not in .env — using workspace files"
   ],
   "next_actions": [
+    "Add NEETPG_SUPABASE_KEY to .env for live queries",
     "V2 validation pipeline",
-    "Persistent process runner for engine",
-    "React Native app integration",
-    "RAG tutor feature"
+    "Persistent runner"
   ],
-  "decisions": [
-    "Hourly cron monitor + auto-restart strategy",
-    "16 medical textbooks chunked for RAG (13,204 chunks)",
-    "Expo React Native app with 6 tabs planned"
-  ]
+  "decisions": []
 }
