@@ -1,20 +1,41 @@
 {
-  "last_updated": "2026-03-24T17:53:42.514843+00:00",
+  "last_updated": "2026-03-24T18:06:58.491070+00:00",
   "updated_by": "alfred_push_status",
   "projects": {
     "CINE": {
       "name": "CineVerse",
-      "status": "unknown",
-      "source": "error",
-      "summary": "Awaiting live data - CINE_SUPABASE_KEY not set in .env",
-      "db": {},
+      "status": "active",
+      "source": "live_db",
+      "progress": 35,
+      "phase": "Data Collection + Question Generation",
+      "summary": "23234 movies, 7143 questions (6780 active), enrichment ongoing",
+      "db": {
+        "movies_total": 23234,
+        "movies_with_cast": 10847,
+        "questions_total": 7143,
+        "questions_active": 6780,
+        "enrichment": {
+          "wiki": 3968,
+          "omdb": 898,
+          "jiosaavn": 10644
+        }
+      },
       "blockers": [
-        "CINE_SUPABASE_KEY not set in .env"
+        "Threads die overnight without watchdog wrapper",
+        "emoji_movie format paused at 33% pass rate",
+        "12,387 movies missing cast/crew"
       ],
       "next_actions": [
-        "Fix data source"
+        "Build watchdog wrapper",
+        "Relaunch all threads",
+        "Add Malayalam + Kannada to generator",
+        "Cast/crew backfill for 12K movies"
       ],
-      "decisions": []
+      "decisions": [
+        "v3 validated = production engine",
+        "Gemini via OpenRouter for generation",
+        "PROGA 2025 compliance: CineCoins = zero real value"
+      ]
     },
     "NEET-UG": {
       "name": "NEET UG Exam Prep",
