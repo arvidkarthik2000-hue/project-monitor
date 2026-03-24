@@ -1,33 +1,74 @@
 {
   "name": "NEET PG Exam Prep",
   "status": "active",
-  "source": "workspace_files",
+  "source": "verified",
   "progress": 45,
   "phase": "V2 Engine Generation (Gemini)",
-  "summary": "Stats from engine_v2_stats.json, 95 scraped JSON files",
+  "summary": "172,747 total Qs in Supabase, 19,225 v2 Gemini generated, 396 knowledge articles, 16 subjects. Engine NOT running right now.",
   "db": {
-    "scraped_files": 95,
-    "engine_stats": {
-      "start": "2026-03-24T16:04:17.101Z",
-      "engine": "v2-hybrid",
-      "generation_model": "gemini-2.5-pro",
-      "validation": "deferred-to-openclaw",
-      "paid_tier": false,
+    "questions_total": 172747,
+    "questions_v2_gemini": 19225,
+    "pending_validation": 19225,
+    "knowledge_articles": 396,
+    "supabase_host": "db.tgtxfbfuzpkqofxnrtie.supabase.co",
+    "by_subject": {
+      "Medicine": 3329,
+      "Surgery": 2400,
+      "Pharmacology": 2070,
+      "ObsGyn": 1900,
+      "Microbiology": 1639,
+      "Pathology": 1459,
+      "PSM": 890,
+      "ENT": 740,
+      "Pediatrics": 730,
+      "Biochemistry": 700,
+      "Physiology": 650,
+      "Dermatology": 628,
+      "Orthopedics": 610,
+      "Ophthalmology": 610,
+      "Anatomy": 550,
+      "Psychiatry": 320
+    },
+    "scraped_json_files": 95
+  },
+  "engine": {
+    "status": "NOT RUNNING",
+    "note": "Engine dies when OpenClaw session is GC'd. No persistent process manager.",
+    "last_stats": {
       "generated": 200,
       "inserted": 200,
-      "articles": 16,
-      "errors": [],
-      "skipped_embed": 0
+      "model": "gemini-2.5-pro"
     }
   },
+  "features_verified": {
+    "continuous_engine_v2.js": "EXISTS — generation engine",
+    "generate_questions.js": "EXISTS — question generator",
+    "knowledge_pipeline.js": "MISSING — not built",
+    "rag_tutor.js": "MISSING — not built",
+    "validate_questions.js": "MISSING — not built",
+    "cross_validate.js": "MISSING — not built"
+  },
+  "verification_notes": {
+    "textbook_chunks_pgvector": "UNVERIFIED — Supabase key found but table query not run in this resync",
+    "cross_model_validation": "NOT RUNNING — validate_questions.js doesn't exist",
+    "skills_count": "Only 2 of claimed 6 features actually exist on disk (engine + generator)"
+  },
+  "workspace": {
+    "last_modified": "2026-03-24 22:27 — engine_v2_stats.json"
+  },
   "blockers": [
-    "Engine dies between hourly checks",
-    "NEETPG_SUPABASE_KEY not in .env — using workspace files"
+    "Engine process dies when OpenClaw sessions are GC'd",
+    "4 of 6 claimed features (knowledge_pipeline, rag_tutor, validate, cross_validate) DO NOT EXIST",
+    "V2 validation pipeline not built — all 19,225 questions are unvalidated"
   ],
   "next_actions": [
-    "Add NEETPG_SUPABASE_KEY to .env for live queries",
-    "V2 validation pipeline",
-    "Persistent runner"
+    "Build persistent process runner for engine",
+    "Build validation pipeline (validate_questions.js)",
+    "Verify textbook chunk count in pgvector",
+    "React Native app integration"
   ],
-  "decisions": []
+  "decisions": [
+    "Hourly cron monitor + auto-restart (stopgap)",
+    "Supabase service role key found in neet-pg-pyq/.env"
+  ]
 }

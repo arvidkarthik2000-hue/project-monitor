@@ -1,35 +1,68 @@
 {
   "name": "NEET UG Exam Prep",
   "status": "active",
-  "source": "workspace_files",
+  "source": "verified",
   "progress": 75,
-  "phase": "Production - Live at neetai.in",
-  "summary": "8082 verified questions live at neetai.in, all QC phases complete",
+  "phase": "Production — Deployed to Vercel",
+  "summary": "8,082 questions in questions.json. Year gaps (2010,2011,2019,2021) ALL FILLED. Quarantine pipeline exists. DNS resolution failed from this machine.",
   "db": {
     "questions_total": 8082,
-    "questions_verified": 8082,
-    "critical_issues": 0,
-    "subjects": {
-      "Botany": 2122,
-      "Zoology": 1360,
+    "questions_by_subject": {
+      "Chemistry": 2371,
       "Physics": 2229,
-      "Chemistry": 2371
+      "Botany": 2122,
+      "Zoology": 1360
     },
-    "enhanced_questions": 11427,
-    "deployment": "neetai.in (Vercel)",
-    "data_source": "questions.json (static)"
+    "years_present": [
+      "2005",
+      "2006",
+      "2007",
+      "2008",
+      "2009",
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "year_gaps_filled": true,
+    "data_source": "neetai-webapp/public/questions.json (static file)",
+    "deployment": "neetai.in (Vercel) — DNS check failed from this machine"
+  },
+  "verification_notes": {
+    "site_check": "FAILED — getaddrinfo failed. Likely local DNS issue, not site down.",
+    "insights_page": "NOT CHECKED — site unreachable",
+    "auth_type": "UNVERIFIED — only found crypto/hash in venv dependencies, not in app auth code. Need manual check.",
+    "per_option_explanations": "Files exist: apply_explanations_batch1.py, explanations_checkpoint_v2.json, explanations_rewritten.json — but completion status unverified",
+    "quarantine_chemistry": "Files exist: quarantine.py, quarantine2.py, quarantine.json, process_all_quarantine.py — reconstruction status unverified"
+  },
+  "workspace": {
+    "last_modified": "2026-03-22 23:28 — ENGINE_DATA_INTEGRATION_REPORT.md"
   },
   "blockers": [
-    "OpenRouter credits exhausted for enrichment",
-    "WhatsApp bot not started"
+    "OpenRouter credits exhausted for Gemini enrichment",
+    "WhatsApp bot not started",
+    "Cannot verify site is live from this machine (DNS issue)"
   ],
   "next_actions": [
+    "Verify neetai.in is actually accessible from browser",
     "WhatsApp bot integration",
-    "Gemini enrichment pipeline",
-    "Expand question bank beyond 8K"
+    "Verify per-option explanations completed for top 20 chapters",
+    "Verify quarantined Chemistry PYQs reconstructed"
   ],
   "decisions": [
-    "All QC phases complete (3B/3C/3D/3E) as of Mar 19",
+    "All QC phases marked complete as of Mar 19",
     "Deployed to neetai.in via Vercel"
   ]
 }

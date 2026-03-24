@@ -1,240 +1,390 @@
 {
-  "last_updated": "2026-03-24T18:12:36.086536+00:00",
-  "updated_by": "alfred_push_status",
+  "last_updated": "2026-03-24T18:25:00Z",
+  "updated_by": "alfred_full_resync",
+  "sync_metadata": {
+    "last_full_resync": "2026-03-24T18:25:00Z",
+    "verification_method": "actual_queries_and_file_checks",
+    "projects_with_live_db": ["CINE", "NEET-PG"],
+    "projects_from_workspace": ["NEET-UG", "CHOTU", "QCLAW", "STYLE", "UPSC", "PHOTO"],
+    "confidence_notes": {
+      "CINE": "Live Supabase queries — high confidence. All thread processes verified running via process list.",
+      "NEET-UG": "File checks (questions.json counted). Site DNS failed from this machine but Vercel deployment confirmed. Medium-high confidence.",
+      "NEET-PG": "Live Supabase via _check_status.js (172,747 total, 19,225 v2). Engine NOT running at time of check. High confidence on DB numbers.",
+      "CHOTU": "File checks only. Site DNS failed from this machine. 3 directories exist (webapp, bot, videos). Medium confidence.",
+      "QCLAW": "File checks only. No skills/ directory found. No Kite credentials. No live broker. Low-medium confidence.",
+      "STYLE": "File checks only. Site DNS failed. No agent files found for VANI/DRISHTI/etc. No GupShup key. Low confidence.",
+      "UPSC": "File checks verified all 50 daily files exist. Day 1 content verified ready. Medium-high confidence.",
+      "PHOTO": "File checks. Server exists, model exists, overlay.py exists. Output dir is EMPTY — no actual face swap tested. Medium confidence."
+    }
+  },
   "projects": {
     "CINE": {
       "name": "CineVerse",
       "status": "active",
-      "source": "live_db",
+      "source": "verified",
       "progress": 35,
       "phase": "Data Collection + Question Generation",
-      "summary": "23234 movies, 7143 questions (6780 active), enrichment ongoing",
+      "summary": "23,234 movies, 7,143 total questions (3,081 v3 validated, 6,780 active). 6 threads ALL RUNNING under watchdog.",
       "db": {
         "movies_total": 23234,
         "movies_with_cast": 10847,
+        "movies_with_imdb_id": 14897,
         "questions_total": 7143,
         "questions_active": 6780,
+        "questions_v3_validated": 3081,
+        "v3_by_category": {
+          "rapid_fire": 202,
+          "connect": 135,
+          "cinema_lingo": 92,
+          "fill_in_blank": 90,
+          "twisted_plot": 81,
+          "search_parameters": 81,
+          "freeze_frame": 78,
+          "xy_story_puzzle": 72,
+          "picture_math": 67,
+          "complete_the_list": 48,
+          "minimalistic_poster": 42,
+          "emoji_movie": 12,
+          "dialogue_dilemma": 0
+        },
+        "v3_by_industry": {
+          "telugu": 577,
+          "tamil": 236,
+          "hindi": 156,
+          "kannada": 8,
+          "other": 15
+        },
+        "movies_by_industry_note": "API returned only 1000 rows (hindi: 1000). Need RPC for full breakdown. Previous known: Hindi 8480, Tamil 5026, Malayalam 4322, Telugu 3339, Kannada 2067.",
         "enrichment": {
-          "wiki": 3968,
+          "wiki": 3975,
           "omdb": 898,
-          "jiosaavn": 10644
+          "jiosaavn_movies": 10645
         }
       },
+      "threads": {
+        "thread1_wiki": {"status": "running", "process": "watchdog.py thread1_wiki_multilang.py", "pid": 15724},
+        "thread2_omdb": {"status": "running", "process": "watchdog.py thread2_omdb_day2.py", "pid": 29448},
+        "thread3_jiosaavn": {"status": "running", "process": "watchdog.py thread3_jiosaavn.py", "pid": 23896},
+        "thread4_questions": {"status": "running", "process": "watchdog.py thread4_v3_validated.py", "pid": 30172},
+        "thread5_imdb": {"status": "running", "process": "watchdog.py thread5_imdb_scrape.py", "pid": 34212},
+        "thread6_castcrew": {"status": "running", "process": "watchdog.py thread6_castcrew_backfill.py", "pid": 26196}
+      },
+      "workspace": {
+        "watchdog_exists": true,
+        "question_style_guide_lines": 538,
+        "last_modified": "2026-03-24 23:57 — thread3_jiosaavn log"
+      },
       "blockers": [
-        "Threads die overnight without watchdog wrapper",
-        "emoji_movie format paused at 33% pass rate",
-        "12,387 movies missing cast/crew"
+        "emoji_movie format only 12 v3 validated (low pass rate)",
+        "dialogue_dilemma: 0 questions — waiting on IMDb quote data",
+        "12,387 movies still missing cast/crew (backfill thread6 running)"
       ],
       "next_actions": [
-        "Build watchdog wrapper",
-        "Relaunch all threads",
-        "Add Malayalam + Kannada to generator",
-        "Cast/crew backfill for 12K movies"
+        "Monitor thread health via watchdog",
+        "Fix emoji_movie generation prompt",
+        "Get IMDb quote pipeline working for dialogue_dilemma",
+        "Add Malayalam + Kannada to question generator"
       ],
       "decisions": [
-        "v3 validated = production engine",
+        "v3 validated = production engine (3,081 so far)",
         "Gemini via OpenRouter for generation",
-        "PROGA 2025 compliance: CineCoins = zero real value"
+        "PROGA 2025 compliance: CineCoins = zero real value",
+        "Watchdog wrapper auto-restarts dead threads"
       ]
     },
     "NEET-UG": {
       "name": "NEET UG Exam Prep",
       "status": "active",
-      "source": "workspace_files",
+      "source": "verified",
       "progress": 75,
-      "phase": "Production - Live at neetai.in",
-      "summary": "8082 verified questions live at neetai.in, all QC phases complete",
+      "phase": "Production — Deployed to Vercel",
+      "summary": "8,082 questions in questions.json. Year gaps (2010,2011,2019,2021) ALL FILLED. Quarantine pipeline exists. DNS resolution failed from this machine.",
       "db": {
         "questions_total": 8082,
-        "questions_verified": 8082,
-        "critical_issues": 0,
-        "subjects": {
-          "Botany": 2122,
-          "Zoology": 1360,
+        "questions_by_subject": {
+          "Chemistry": 2371,
           "Physics": 2229,
-          "Chemistry": 2371
+          "Botany": 2122,
+          "Zoology": 1360
         },
-        "enhanced_questions": 11427,
-        "deployment": "neetai.in (Vercel)",
-        "data_source": "questions.json (static)"
+        "years_present": ["2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025"],
+        "year_gaps_filled": true,
+        "data_source": "neetai-webapp/public/questions.json (static file)",
+        "deployment": "neetai.in (Vercel) — DNS check failed from this machine"
+      },
+      "verification_notes": {
+        "site_check": "FAILED — getaddrinfo failed. Likely local DNS issue, not site down.",
+        "insights_page": "NOT CHECKED — site unreachable",
+        "auth_type": "UNVERIFIED — only found crypto/hash in venv dependencies, not in app auth code. Need manual check.",
+        "per_option_explanations": "Files exist: apply_explanations_batch1.py, explanations_checkpoint_v2.json, explanations_rewritten.json — but completion status unverified",
+        "quarantine_chemistry": "Files exist: quarantine.py, quarantine2.py, quarantine.json, process_all_quarantine.py — reconstruction status unverified"
+      },
+      "workspace": {
+        "last_modified": "2026-03-22 23:28 — ENGINE_DATA_INTEGRATION_REPORT.md"
       },
       "blockers": [
-        "OpenRouter credits exhausted for enrichment",
-        "WhatsApp bot not started"
+        "OpenRouter credits exhausted for Gemini enrichment",
+        "WhatsApp bot not started",
+        "Cannot verify site is live from this machine (DNS issue)"
       ],
       "next_actions": [
+        "Verify neetai.in is actually accessible from browser",
         "WhatsApp bot integration",
-        "Gemini enrichment pipeline",
-        "Expand question bank beyond 8K"
+        "Verify per-option explanations completed for top 20 chapters",
+        "Verify quarantined Chemistry PYQs reconstructed"
       ],
       "decisions": [
-        "All QC phases complete (3B/3C/3D/3E) as of Mar 19",
+        "All QC phases marked complete as of Mar 19",
         "Deployed to neetai.in via Vercel"
       ]
     },
     "NEET-PG": {
       "name": "NEET PG Exam Prep",
       "status": "active",
-      "source": "workspace_files",
+      "source": "verified",
       "progress": 45,
       "phase": "V2 Engine Generation (Gemini)",
-      "summary": "Stats from engine_v2_stats.json, 95 scraped JSON files",
+      "summary": "172,747 total Qs in Supabase, 19,225 v2 Gemini generated, 396 knowledge articles, 16 subjects. Engine NOT running right now.",
       "db": {
-        "scraped_files": 95,
-        "engine_stats": {
-          "start": "2026-03-24T16:04:17.101Z",
-          "engine": "v2-hybrid",
-          "generation_model": "gemini-2.5-pro",
-          "validation": "deferred-to-openclaw",
-          "paid_tier": false,
+        "questions_total": 172747,
+        "questions_v2_gemini": 19225,
+        "pending_validation": 19225,
+        "knowledge_articles": 396,
+        "supabase_host": "db.tgtxfbfuzpkqofxnrtie.supabase.co",
+        "by_subject": {
+          "Medicine": 3329,
+          "Surgery": 2400,
+          "Pharmacology": 2070,
+          "ObsGyn": 1900,
+          "Microbiology": 1639,
+          "Pathology": 1459,
+          "PSM": 890,
+          "ENT": 740,
+          "Pediatrics": 730,
+          "Biochemistry": 700,
+          "Physiology": 650,
+          "Dermatology": 628,
+          "Orthopedics": 610,
+          "Ophthalmology": 610,
+          "Anatomy": 550,
+          "Psychiatry": 320
+        },
+        "scraped_json_files": 95
+      },
+      "engine": {
+        "status": "NOT RUNNING",
+        "note": "Engine dies when OpenClaw session is GC'd. No persistent process manager.",
+        "last_stats": {
           "generated": 200,
           "inserted": 200,
-          "articles": 16,
-          "errors": [],
-          "skipped_embed": 0
+          "model": "gemini-2.5-pro"
         }
       },
+      "features_verified": {
+        "continuous_engine_v2.js": "EXISTS — generation engine",
+        "generate_questions.js": "EXISTS — question generator",
+        "knowledge_pipeline.js": "MISSING — not built",
+        "rag_tutor.js": "MISSING — not built",
+        "validate_questions.js": "MISSING — not built",
+        "cross_validate.js": "MISSING — not built"
+      },
+      "verification_notes": {
+        "textbook_chunks_pgvector": "UNVERIFIED — Supabase key found but table query not run in this resync",
+        "cross_model_validation": "NOT RUNNING — validate_questions.js doesn't exist",
+        "skills_count": "Only 2 of claimed 6 features actually exist on disk (engine + generator)"
+      },
+      "workspace": {
+        "last_modified": "2026-03-24 22:27 — engine_v2_stats.json"
+      },
       "blockers": [
-        "Engine dies between hourly checks",
-        "NEETPG_SUPABASE_KEY not in .env — using workspace files"
+        "Engine process dies when OpenClaw sessions are GC'd",
+        "4 of 6 claimed features (knowledge_pipeline, rag_tutor, validate, cross_validate) DO NOT EXIST",
+        "V2 validation pipeline not built — all 19,225 questions are unvalidated"
       ],
       "next_actions": [
-        "Add NEETPG_SUPABASE_KEY to .env for live queries",
-        "V2 validation pipeline",
-        "Persistent runner"
+        "Build persistent process runner for engine",
+        "Build validation pipeline (validate_questions.js)",
+        "Verify textbook chunk count in pgvector",
+        "React Native app integration"
       ],
-      "decisions": []
+      "decisions": [
+        "Hourly cron monitor + auto-restart (stopgap)",
+        "Supabase service role key found in neet-pg-pyq/.env"
+      ]
     },
     "CHOTU": {
       "name": "Chotu AI",
       "status": "active",
       "source": "workspace_files",
-      "progress": 60,
-      "phase": "Testing - Live at chotu-ai.in",
-      "summary": "578 questions, 8 AI education videos, full Next.js app deployed",
+      "progress": 55,
+      "phase": "Development — 3 Codebases",
+      "summary": "578 questions (from data file), 8 AI videos, Next.js webapp. DNS check failed. 3 codebases exist (webapp, bot, videos).",
       "db": {
         "questions_estimated": 578,
         "videos": 8,
-        "video_topics": [
-          "ai-basics",
-          "ai-ethics",
-          "computer-vision",
-          "generative-ai",
-          "how-ai-thinks",
-          "machine-learning",
-          "nlp-chatbots",
-          "python-ai"
-        ],
-        "deployment": "chotu-ai.in (Vercel)",
-        "features": [
-          "17 pages",
-          "5 AI games",
-          "gamification",
-          "bilingual EN/HI"
-        ]
+        "codebases": ["chotu-ai-webapp", "chotu-ai-bot", "chotu-ai-videos"],
+        "deployment": "chotu-ai.in (Vercel) — DNS check failed from this machine"
+      },
+      "verification_notes": {
+        "site_check": "FAILED — getaddrinfo failed",
+        "auth_type": "UNVERIFIED — bcrypt found only in node_modules type definitions, not confirmed in app auth code",
+        "parent_dashboard": "Uses Supabase/fetch (from SSR bundle analysis) — but actual vs mock data unverified",
+        "ai_games": "Only found caniuse gamepad.js in node_modules — NO dedicated game component files found in workspace. Games may be embedded in page components, status UNVERIFIED",
+        "gupshup": "NO GupShup API key found in any .env file"
+      },
+      "workspace": {
+        "last_modified": "2026-03-21 12:12 — DAILY_NUDGE_README.md",
+        "note": "No work in 3 days"
       },
       "blockers": [
-        "GupShup WhatsApp API not configured",
-        "Videos too large for Vercel CDN"
+        "GupShup WhatsApp API not configured — no key found",
+        "Videos hosted locally (too large for Vercel CDN)",
+        "Cannot verify site is live from this machine",
+        "AI games status unverified — no dedicated game files found"
       ],
       "next_actions": [
-        "WhatsApp bot via GupShup",
-        "Video hosting (CDN/S3)",
-        "200+ more AI questions"
+        "Verify chotu-ai.in from browser",
+        "Verify AI games are actually functional",
+        "GupShup WhatsApp setup",
+        "Video hosting (CDN/S3)"
       ],
       "decisions": [
         "AI education only (Doc directive Mar 11)",
-        "Duolingo-style gamification",
-        "Deployed to chotu-ai.in"
+        "3 codebases: webapp, bot, videos"
       ]
     },
     "QCLAW": {
       "name": "QuantClaw / Voltzz Trading",
       "status": "active",
       "source": "workspace_files",
-      "progress": 60,
-      "phase": "Development - Agent Deployed",
-      "summary": "OpenClaw agent on Opus 4.6, 13 Python files, 7 skills, paper trading active",
+      "progress": 40,
+      "phase": "Development — Scripts Built, No Live Trading",
+      "summary": "13 Python files in trading-agent/. NO skills directory. NO Kite credentials. Paper trading engine exists but status unverified.",
       "db": {
         "python_files": 13,
-        "stocks_tracked": 52,
-        "indices": [
-          "NIFTY",
-          "BANKNIFTY"
-        ],
-        "skills": 7
+        "key_files": {
+          "scanner.py": "8755 bytes — EXISTS",
+          "paper_engine.py": "17848 bytes — EXISTS",
+          "backtest.py": "18338 bytes — EXISTS",
+          "backtest_real.py": "26243 bytes — EXISTS"
+        },
+        "workspace_dir": "trading-agent"
+      },
+      "verification_notes": {
+        "skills_directory": "DOES NOT EXIST — previously claimed 7 skills",
+        "kite_credentials": "NO Kite/broker credentials found in any config/env file",
+        "workspace_voltzz": "DOES NOT EXIST — only trading-agent/ exists",
+        "stock_scan": "scanner.py exists (8755 bytes) but no output/results files found",
+        "paper_trading": "paper_engine.py exists but no evidence it has been run (no output files)",
+        "live_broker": "NOT connected — no credentials anywhere"
+      },
+      "workspace": {
+        "last_modified": "2026-03-20 23:03 — optimize_straddle_vwap.py",
+        "note": "No work in 4 days"
       },
       "blockers": [
-        "No live broker integration (paper only)",
-        "OpenAlgo bridge not configured"
+        "NO skills/ directory (previously reported 7 skills — INACCURATE)",
+        "No broker credentials configured",
+        "Paper trading never tested (no output files)",
+        "Stock scan never produced results"
       ],
       "next_actions": [
-        "Connect OpenAlgo to broker",
-        "Backtest validation",
-        "Options strategies"
+        "Build skills directory structure",
+        "Configure Kite Connect credentials",
+        "Run stock scanner and verify output",
+        "Test paper trading engine end-to-end"
       ],
       "decisions": [
-        "Hybrid: LLMs for analysis, Python for execution",
-        "Paper trading first",
-        "Indian markets (NSE/BSE)"
+        "CORRECTION: Progress downgraded from 60% to 40% — skills don't exist, no live trading",
+        "Hybrid architecture planned but not fully built"
       ]
     },
     "STYLE": {
       "name": "StyleGenie",
       "status": "active",
       "source": "workspace_files",
-      "progress": 50,
-      "phase": "Development - Bot + Engine Built",
-      "summary": "WhatsApp bot + Flask engine built, 1680 files, landing page live at stylegenie.in",
+      "progress": 30,
+      "phase": "Development — Partial Build",
+      "summary": "3 directories (stylegenie, stylegenie-bot, stylegenie-engine). No agent files found for VANI/DRISHTI/etc. No GupShup. DNS failed.",
       "db": {
+        "codebases": ["stylegenie", "stylegenie-bot", "stylegenie-engine"],
         "total_files": 1680,
-        "products": 50,
-        "brands": 5,
-        "style_profiles": 5,
-        "deployment": "stylegenie.in"
+        "deployment": "stylegenie.in — DNS check failed"
+      },
+      "verification_notes": {
+        "site_check": "FAILED — getaddrinfo failed",
+        "agents": "NONE FOUND — searched for vani, drishti, kavi, maya, rasa, utsav, sathi across all 3 directories. Zero matches.",
+        "weather_api": "Files mentioning weather found: main.py, style_engine.py — but actual integration unverified",
+        "gupshup": "NO GupShup API key in any .env file",
+        "end_to_end_test": "NOT POSSIBLE — no WhatsApp credentials"
+      },
+      "workspace": {
+        "last_modified": "2026-03-11 19:56 — brands.json",
+        "note": "No work in 13 days"
       },
       "blockers": [
-        "GupShup WhatsApp API not configured",
-        "Aishwarya's product catalog pending"
+        "NONE of the 7 agents (VANI/DRISHTI/KAVI/MAYA/RASA/UTSAV/SATHI) found on disk",
+        "No GupShup WhatsApp API key",
+        "Cannot verify site is live",
+        "No work in 13 days"
       ],
       "next_actions": [
+        "CORRECTION: Previously reported 50% — actual progress much lower",
+        "Build agent system (or verify if using different file names)",
         "GupShup setup",
-        "Product catalog from Aishwarya",
-        "Instagram OAuth"
+        "Product catalog from Aishwarya"
       ],
       "decisions": [
-        "Claude Vision for outfit analysis",
-        "5 style profiles"
+        "CORRECTION: Progress downgraded from 50% to 30% — agents don't exist on disk"
       ]
     },
     "UPSC": {
       "name": "UPSC Sentinel",
       "status": "active",
-      "source": "workspace_files",
+      "source": "verified",
       "progress": 65,
-      "phase": "Launch Content Ready",
-      "summary": "257 clean questions (v1:57, v2:150, top10:50). 50 daily WhatsApp messages ready.",
+      "phase": "Launch Content Ready — Day 1 is TOMORROW",
+      "summary": "257 questions (v1:57, v2:150, top10:50). All 50 daily question files + 50 answer files verified. Day 1 content READY for Mar 25.",
       "db": {
-        "questions_total": 257,
         "questions_v1": 57,
         "questions_v2": 150,
         "questions_top10": 50,
+        "questions_total": 257,
         "daily_content_days": 50,
         "daily_answer_sheets": 50,
-        "pyq_files": 0
+        "daily_schedule_entries": 10,
+        "pib_files": 22
+      },
+      "day1_preview": {
+        "file": "day_01.txt",
+        "lines": 40,
+        "chars": 1654,
+        "first_question": "PM SVANidhi scheme — collateral-free loans to street vendors"
+      },
+      "verification_notes": {
+        "all_50_daily_files": "VERIFIED — 50 question files + 50 answer files exist",
+        "day_01_ready": "VERIFIED — 40 lines, 1654 chars, starts with UPSC SENTINEL Day 1/50",
+        "daily_schedule": "EXISTS but only 10 entries (expected 50) — INCOMPLETE",
+        "pib_scraper_cron": "UNVERIFIED — 22 PIB-related scripts exist but no evidence of active cron/scheduled task",
+        "whatsapp_group": "UNVERIFIED — cannot check from here"
+      },
+      "workspace": {
+        "last_modified": "2026-03-24 22:11 — TASK_COMPLETION_SUMMARY.md"
       },
       "blockers": [
-        "WhatsApp bot not integrated for automated delivery",
-        "No user response tracking system"
+        "daily_schedule.json only has 10 entries (should be 50)",
+        "WhatsApp bot not integrated — Day 1 must be sent MANUALLY tomorrow",
+        "PIB scraper not on any cron/scheduled task",
+        "No user response tracking"
       ],
       "next_actions": [
-        "WhatsApp bot for daily delivery",
-        "User response tracking + scoring",
-        "Generate more questions for gap topics"
+        "URGENT: Send Day 1 content manually on Mar 25",
+        "Fix daily_schedule.json (missing 40 entries)",
+        "WhatsApp bot for automated delivery",
+        "Set up PIB scraper on Windows Task Scheduler"
       ],
       "decisions": [
-        "50-day launch: Mar 25 to May 13",
-        "1 easy + 1 moderate + 1 hard per day",
+        "Launch: Mar 25 to May 13 (50 days)",
         "Prelims: May 25, 2026"
       ]
     },
@@ -242,35 +392,76 @@
       "name": "PhotoBooth AI / PVR Scene Stealer",
       "status": "active",
       "source": "workspace_files",
-      "progress": 40,
-      "phase": "Build Complete - Ready for Demo",
-      "summary": "ML stack working, model=loaded, server=ready",
+      "progress": 35,
+      "phase": "Build Complete — NOT TESTED with real images",
+      "summary": "Server.py exists, model loaded (528MB). overlay.py exists. But OUTPUT DIRECTORY IS EMPTY — no face swap has been tested with an actual image.",
       "db": {
-        "model_file": "inswapper_128.onnx",
+        "model_file": "inswapper_128.onnx (528MB)",
         "server_file": "core/server.py",
+        "overlay_file": "overlay.py",
+        "branding_dir": "branding/ exists",
         "gpu": "RTX 5060 Ti (Blackwell sm_120)",
         "pytorch": "2.7.1+cu128",
-        "vram": "0.55GB",
-        "init_time": "5.2s",
-        "port": 8000,
-        "build_status_excerpt": "# PVR Scene Stealer — Build Status\n\n**Status:** ✅ READY FOR DEMO  \n**Time:** Fixed 2026-03-24 12:40 "
+        "test_files": ["test_face_engine.py", "create_test_scene.py", "test_scene.mp4", "test_review.jpg"],
+        "output_directory": "EMPTY — zero swap results"
+      },
+      "verification_notes": {
+        "server_health": "NOT TESTED — server not started during this resync",
+        "face_swap_tested": "NO — output/ directory is completely empty. No swap has been run on an actual image.",
+        "pvr_branding": "branding/ directory exists, overlay.py exists — but not verified as functional",
+        "hardware": "No webcam, no Quest headsets verified"
+      },
+      "workspace": {
+        "last_modified": "2026-03-24 12:37 — BUILD_STATUS.md"
       },
       "blockers": [
-        "No webcam on dev machine",
-        "Need venue for live demo",
-        "PVR branding overlay not built"
+        "NO actual face swap has been tested (output dir empty)",
+        "No webcam connected",
+        "Server health endpoint not verified in this resync",
+        "Hardware procurement status unknown"
       ],
       "next_actions": [
-        "Webcam at venue",
-        "Live demo test",
-        "PVR branding overlay"
+        "CORRECTION: Previously 40% → 35%. Model loads but no swap tested.",
+        "Run an actual face swap test with test images",
+        "Test server health endpoint",
+        "Webcam setup at venue"
       ],
       "decisions": [
         "PyTorch 2.7.1+cu128 for Blackwell",
-        "HuggingFace for model (GitHub 404)",
-        "numpy<2 for onnxruntime compat"
+        "HuggingFace for model (GitHub 404)"
       ]
     }
   },
-  "alerts": []
+  "alerts": [
+    {
+      "project": "UPSC",
+      "severity": "critical",
+      "message": "Day 1 content must go out TOMORROW March 25. WhatsApp bot not ready — must send manually.",
+      "timestamp": "2026-03-24T18:25:00Z"
+    },
+    {
+      "project": "NEET-PG",
+      "severity": "high",
+      "message": "Engine NOT running. 4 of 6 claimed features don't exist on disk.",
+      "timestamp": "2026-03-24T18:25:00Z"
+    },
+    {
+      "project": "QCLAW",
+      "severity": "medium",
+      "message": "Skills directory doesn't exist. Progress was over-reported (60% → 40%).",
+      "timestamp": "2026-03-24T18:25:00Z"
+    },
+    {
+      "project": "STYLE",
+      "severity": "medium",
+      "message": "None of 7 agent files found. No work in 13 days. Progress was over-reported (50% → 30%).",
+      "timestamp": "2026-03-24T18:25:00Z"
+    },
+    {
+      "project": "PHOTO",
+      "severity": "medium",
+      "message": "Output directory empty — no face swap actually tested despite 'build complete' status.",
+      "timestamp": "2026-03-24T18:25:00Z"
+    }
+  ]
 }

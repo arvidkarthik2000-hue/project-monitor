@@ -2,30 +2,45 @@
   "name": "QuantClaw / Voltzz Trading",
   "status": "active",
   "source": "workspace_files",
-  "progress": 60,
-  "phase": "Development - Agent Deployed",
-  "summary": "OpenClaw agent on Opus 4.6, 13 Python files, 7 skills, paper trading active",
+  "progress": 40,
+  "phase": "Development — Scripts Built, No Live Trading",
+  "summary": "13 Python files in trading-agent/. NO skills directory. NO Kite credentials. Paper trading engine exists but status unverified.",
   "db": {
     "python_files": 13,
-    "stocks_tracked": 52,
-    "indices": [
-      "NIFTY",
-      "BANKNIFTY"
-    ],
-    "skills": 7
+    "key_files": {
+      "scanner.py": "8755 bytes — EXISTS",
+      "paper_engine.py": "17848 bytes — EXISTS",
+      "backtest.py": "18338 bytes — EXISTS",
+      "backtest_real.py": "26243 bytes — EXISTS"
+    },
+    "workspace_dir": "trading-agent"
+  },
+  "verification_notes": {
+    "skills_directory": "DOES NOT EXIST — previously claimed 7 skills",
+    "kite_credentials": "NO Kite/broker credentials found in any config/env file",
+    "workspace_voltzz": "DOES NOT EXIST — only trading-agent/ exists",
+    "stock_scan": "scanner.py exists (8755 bytes) but no output/results files found",
+    "paper_trading": "paper_engine.py exists but no evidence it has been run (no output files)",
+    "live_broker": "NOT connected — no credentials anywhere"
+  },
+  "workspace": {
+    "last_modified": "2026-03-20 23:03 — optimize_straddle_vwap.py",
+    "note": "No work in 4 days"
   },
   "blockers": [
-    "No live broker integration (paper only)",
-    "OpenAlgo bridge not configured"
+    "NO skills/ directory (previously reported 7 skills — INACCURATE)",
+    "No broker credentials configured",
+    "Paper trading never tested (no output files)",
+    "Stock scan never produced results"
   ],
   "next_actions": [
-    "Connect OpenAlgo to broker",
-    "Backtest validation",
-    "Options strategies"
+    "Build skills directory structure",
+    "Configure Kite Connect credentials",
+    "Run stock scanner and verify output",
+    "Test paper trading engine end-to-end"
   ],
   "decisions": [
-    "Hybrid: LLMs for analysis, Python for execution",
-    "Paper trading first",
-    "Indian markets (NSE/BSE)"
+    "CORRECTION: Progress downgraded from 60% to 40% — skills don't exist, no live trading",
+    "Hybrid architecture planned but not fully built"
   ]
 }
