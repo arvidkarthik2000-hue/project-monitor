@@ -587,6 +587,12 @@ def write_and_push(status, commit_msg=None):
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
     print(f"  Appended to logs/{today}.jsonl")
 
+    # Write timestamp file for cache-busting verification
+    ts = status["last_updated"]
+    with open("last_push_timestamp.txt", "w") as f:
+        f.write(ts + "\n")
+    print(f"  Wrote last_push_timestamp.txt ({ts})")
+
     if not commit_msg:
         commit_msg = f"status update {datetime.now().strftime('%Y-%m-%d %H:%M')}"
 
