@@ -4,9 +4,9 @@
   "source": "live_db",
   "progress": 45,
   "phase": "V2 Engine Generation (Gemini)",
-  "summary": "174646 total Qs, 0 v2 generated, 410 knowledge articles",
+  "summary": "175079 total Qs, 0 v2 generated, 410 knowledge articles",
   "db": {
-    "questions_total": 174646,
+    "questions_total": 175079,
     "questions_v2_gemini": 0,
     "knowledge_articles": 410,
     "supabase_host": "db.tgtxfbfuzpkqofxnrtie.supabase.co"
