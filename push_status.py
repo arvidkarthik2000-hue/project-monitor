@@ -86,42 +86,47 @@ def get_cineverse_status():
         return _stale("CineVerse", "CINE_SUPABASE_KEY not set in .env")
     try:
         movies_total = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies")
-        movies_cast = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies", "&cast=not.is.null")
+        movies_cast = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies", "&cast=not.is.null&cast=neq.[]")
+        movies_cast_empty = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies", "&cast=eq.[]")
         questions_total = sb_count(CINE_SB_URL, CINE_SB_KEY, "questions")
         questions_active = sb_count(CINE_SB_URL, CINE_SB_KEY, "questions", "&is_active=eq.true")
+        questions_v3 = sb_count(CINE_SB_URL, CINE_SB_KEY, "questions", "&tags=cs.{v3_validated}")
         wiki = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies", "&wiki_production=not.is.null")
         omdb = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies", "&rotten_tomatoes=not.is.null")
-        saavn = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies", "&songs=not.is.null")
+        saavn = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies", "&songs=not.is.null&songs=neq.[]")
+        imdb_trivia = sb_count(CINE_SB_URL, CINE_SB_KEY, "movies", "&imdb_trivia=not.is.null")
 
         return {
             "name": "CineVerse",
             "status": "active",
             "source": "live_db",
-            "progress": 35,
-            "phase": "Data Collection + Question Generation",
-            "summary": f"{movies_total} movies, {questions_total} questions ({questions_active} active), enrichment ongoing",
+            "progress": 62,
+            "phase": "Retention-First Content Optimization",
+            "summary": f"{movies_total} movies, {questions_total} questions ({questions_active} active, {questions_v3} v3 validated); focus now is media-backed retention upgrades",
             "db": {
                 "movies_total": movies_total,
                 "movies_with_cast": movies_cast,
+                "movies_cast_confirmed_empty": movies_cast_empty,
                 "questions_total": questions_total,
                 "questions_active": questions_active,
-                "enrichment": {"wiki": wiki, "omdb": omdb, "jiosaavn": saavn}
+                "questions_v3_validated": questions_v3,
+                "enrichment": {"wiki": wiki, "omdb": omdb, "jiosaavn": saavn, "imdb_trivia": imdb_trivia}
             },
             "blockers": [
-                "Threads die overnight without watchdog wrapper",
-                "emoji_movie format paused at 33% pass rate",
-                "12,387 movies missing cast/crew"
+                "Most active questions are still stored as text-first with little/no media_url coverage",
+                "Dialogue/audio-backed gameplay is still underbuilt",
+                "Some enrichment fields are structurally non-null but semantically shallow"
             ],
             "next_actions": [
-                "Build watchdog wrapper",
-                "Relaunch all threads",
-                "Add Malayalam + Kannada to generator",
-                "Cast/crew backfill for 12K movies"
+                "Upgrade strong existing questions into media-backed variants",
+                "Generate the next wave from premium language pools only",
+                "Push Kannada and Malayalam coverage deeper",
+                "Clean up dashboard/parser tooling for the current workspace layout"
             ],
             "decisions": [
-                "v3 validated = production engine",
-                "Gemini via OpenRouter for generation",
-                "PROGA 2025 compliance: CineCoins = zero real value"
+                "Stopped wasteful CineVerse workers; keep only cast/crew backfill live when it adds value",
+                "Shifted CineVerse from raw scrape expansion to retention-first optimization",
+                "Prioritize freeze_frame, dialogue_dilemma, minimalistic_poster, connect, and picture_math"
             ]
         }
     except Exception as e:
