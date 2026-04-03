@@ -4,15 +4,15 @@
   "source": "workspace_files",
   "progress": 65,
   "phase": "Launch Content Ready",
-  "summary": "257 clean questions (v1:57, v2:150, top10:50). 50 daily WhatsApp messages ready.",
+  "summary": "257 clean questions (v1:57, v2:150, top10:50). 56 daily WhatsApp messages ready.",
   "db": {
     "questions_total": 257,
     "questions_v1": 57,
     "questions_v2": 150,
     "questions_top10": 50,
-    "daily_content_days": 50,
+    "daily_content_days": 56,
     "daily_answer_sheets": 50,
-    "pyq_files": 0
+    "pyq_files": 1
   },
   "blockers": [
     "WhatsApp bot not integrated for automated delivery",

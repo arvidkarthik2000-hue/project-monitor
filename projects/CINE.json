@@ -4,14 +4,14 @@
   "source": "live_db",
   "progress": 62,
   "phase": "Retention-First Content Optimization",
-  "summary": "23234 movies, 7143 questions (6780 active, 3081 v3 validated); focus now is media-backed retention upgrades",
+  "summary": "23234 movies, 15143 questions (13835 active, 11059 v3 validated); focus now is media-backed retention upgrades",
   "db": {
     "movies_total": 23234,
     "movies_with_cast": 21760,
     "movies_cast_confirmed_empty": 1474,
-    "questions_total": 7143,
-    "questions_active": 6780,
-    "questions_v3_validated": 3081,
+    "questions_total": 15143,
+    "questions_active": 13835,
+    "questions_v3_validated": 11059,
     "enrichment": {
       "wiki": 4058,
       "omdb": 898,

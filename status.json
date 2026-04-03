@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-03-25T23:47:47.564189+00:00",
+  "last_updated": "2026-04-03T09:32:38.211199+00:00",
   "updated_by": "alfred_push_status",
   "projects": {
     "CINE": {
@@ -8,14 +8,14 @@
       "source": "live_db",
       "progress": 62,
       "phase": "Retention-First Content Optimization",
-      "summary": "23234 movies, 7143 questions (6780 active, 3081 v3 validated); focus now is media-backed retention upgrades",
+      "summary": "23234 movies, 15143 questions (13835 active, 11059 v3 validated); focus now is media-backed retention upgrades",
       "db": {
         "movies_total": 23234,
         "movies_with_cast": 21760,
         "movies_cast_confirmed_empty": 1474,
-        "questions_total": 7143,
-        "questions_active": 6780,
-        "questions_v3_validated": 3081,
+        "questions_total": 15143,
+        "questions_active": 13835,
+        "questions_v3_validated": 11059,
         "enrichment": {
           "wiki": 4058,
           "omdb": 898,
@@ -46,16 +46,16 @@
       "source": "workspace_files",
       "progress": 75,
       "phase": "Production - Live at neetai.in",
-      "summary": "8082 verified questions live at neetai.in, all QC phases complete",
+      "summary": "8060 verified questions live at neetai.in, all QC phases complete",
       "db": {
-        "questions_total": 8082,
-        "questions_verified": 8082,
+        "questions_total": 8060,
+        "questions_verified": 8060,
         "critical_issues": 0,
         "subjects": {
-          "Botany": 2122,
-          "Zoology": 1360,
-          "Physics": 2229,
-          "Chemistry": 2371
+          "Botany": 2129,
+          "Zoology": 1368,
+          "Physics": 2161,
+          "Chemistry": 2402
         },
         "enhanced_questions": 11427,
         "deployment": "neetai.in (Vercel)",
@@ -81,11 +81,11 @@
       "source": "live_db",
       "progress": 45,
       "phase": "V2 Engine Generation (Gemini)",
-      "summary": "175079 total Qs, 0 v2 generated, 410 knowledge articles",
+      "summary": "70036 total Qs, 0 v2 generated, 684 knowledge articles",
       "db": {
-        "questions_total": 175079,
+        "questions_total": 70036,
         "questions_v2_gemini": 0,
-        "knowledge_articles": 410,
+        "knowledge_articles": 684,
         "supabase_host": "db.tgtxfbfuzpkqofxnrtie.supabase.co"
       },
       "blockers": [
@@ -210,15 +210,15 @@
       "source": "workspace_files",
       "progress": 65,
       "phase": "Launch Content Ready",
-      "summary": "257 clean questions (v1:57, v2:150, top10:50). 50 daily WhatsApp messages ready.",
+      "summary": "257 clean questions (v1:57, v2:150, top10:50). 56 daily WhatsApp messages ready.",
       "db": {
         "questions_total": 257,
         "questions_v1": 57,
         "questions_v2": 150,
         "questions_top10": 50,
-        "daily_content_days": 50,
+        "daily_content_days": 56,
         "daily_answer_sheets": 50,
-        "pyq_files": 0
+        "pyq_files": 1
       },
       "blockers": [
         "WhatsApp bot not integrated for automated delivery",

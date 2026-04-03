@@ -4,16 +4,16 @@
   "source": "workspace_files",
   "progress": 75,
   "phase": "Production - Live at neetai.in",
-  "summary": "8082 verified questions live at neetai.in, all QC phases complete",
+  "summary": "8060 verified questions live at neetai.in, all QC phases complete",
   "db": {
-    "questions_total": 8082,
-    "questions_verified": 8082,
+    "questions_total": 8060,
+    "questions_verified": 8060,
     "critical_issues": 0,
     "subjects": {
-      "Botany": 2122,
-      "Zoology": 1360,
-      "Physics": 2229,
-      "Chemistry": 2371
+      "Botany": 2129,
+      "Zoology": 1368,
+      "Physics": 2161,
+      "Chemistry": 2402
     },
     "enhanced_questions": 11427,
     "deployment": "neetai.in (Vercel)",
